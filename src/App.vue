@@ -1,13 +1,11 @@
 <!--
- * @Descripttion: 
- * @version: 
- * @Author: zj
- * @Date: 2021-04-29 15:27:49
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-04-30 08:37:18
+ * @Description: 
 -->
 <template>
-  <router-view />
+  <div id="app">
+    <!-- 路由占位符 -->
+    <router-view></router-view>
+  </div>
   <!-- <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
 </template>
@@ -16,23 +14,16 @@
   import {
     defineComponent
   } from 'vue'
-  import HelloWorld from 'comps/HelloWorld.vue'
 
   export default defineComponent({
     name: 'App',
-    components: {
-      HelloWorld
-    }
+
   })
 </script>
 
 <style>
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+    width: 100%;
+    height: 100%;
   }
 </style>
