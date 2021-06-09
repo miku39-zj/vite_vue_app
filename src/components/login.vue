@@ -3,48 +3,58 @@
 -->
 <template>
   <div class="login_container"
-    :style="showMoon ? {['background-color']:'rgba(3, 11, 29, 0.6)'} : {['background-color']:'hsla(0, 0%, 100%, 0.5)'}">
+    :style="showMoon ? {['background-color']:'rgba(1, 4, 10, 0.8)'} : {['background-color']:'hsla(0, 0%, 100%, 0.5)'}">
     <div class="rightTop">
       <svg-icon :icon-class="showMoon ? 'moontag' : 'suntag'" className="moon-icon" />
     </div>
-    <div class="toggle" :class="{'is-moon': showMoon}" @click.prevent="sunChangeMoon">
+    <div class="toggle" :class="{'is-moon': showMoon}" @click="sunChangeMoon">
       <svg-icon icon-class='suntag' className="suntag-icon" />
       <svg-icon icon-class='moontag' className="moontag-icon" />
     </div>
+    <svg xmlns="http://www.w3.org/2000/svg" class="wave" viewBox="0 0 1440 320">
+      <path fill="#0099ff" fill-opacity="1"
+        d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      </path>
+    </svg>
+    <div class="user">
+      <div class="Icon">
+        <svg-icon icon-class='userfill' className="user-icon" />
+      </div>
+      <div class="head">account login</div>
+    </div>
+    <transition name="move" mode="out-in">
+      <SignIn ref="SignIn" v-if="isSignIn" @showSignUp="showSignUp"></SignIn>
+      <SignUp ref="SignUp" v-else @showSignUp="showSignUp"></SignUp>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
   import {
     defineComponent,
-    reactive,
     Ref,
-    toRaw,
     ref
   } from 'vue'
-
+  import SignIn from "./LoginChild/SignIn.vue"
+  import SignUp from "./LoginChild/SignUp.vue"
   export default defineComponent({
+    components: {
+      SignIn,
+      SignUp
+    },
     setup() {
-      let showMoon = ref < Boolean > (true)
-      let form: Object = reactive < Object > ({
-        name: "",
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      })
-      console.log(showMoon,"showMoon");
-      
-      const sunChangeMoon: Function = () => {
-        showMoon = ref < Boolean > (!toRaw(showMoon.value))
-        console.log(showMoon, "showMoon");
+      let showMoon: Ref < boolean > = ref < boolean > (false)
+      let isSignIn: Ref < boolean > = ref < boolean > (true)
+      const showSignUp = () => {
+        isSignIn.value = !isSignIn.value
+      }
+      const sunChangeMoon = () => {
+        showMoon.value = !showMoon.value
       }
       return {
         showMoon,
-        form,
+        isSignIn,
+        showSignUp,
         sunChangeMoon
       }
     }
@@ -56,12 +66,26 @@
     width: 100%;
     height: 100%;
 
+    // background-image: url('../assets/img/19.jpg');
+    // background-size: cover;
+    // background-repeat: no-repeat;
     .wave {
       position: absolute;
       bottom: 0;
       z-index: -1;
       fill: #0099ff;
     }
+  }
+
+  .login_container::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    z-index: -1;
+    background-color: #0099ff;
+    clip-path: ellipse(46% 60% at 0% 0%);
   }
 
   .rightTop {
@@ -105,5 +129,47 @@
 
   .is-moon::after {
     transform: translateX(calc(100% + 2px));
+  }
+
+  .user {
+    position: absolute;
+    top: 20rem;
+    left: 8rem;
+    z-index: -1;
+
+    .Icon {
+      text-align: center;
+      margin-bottom: 2px;
+
+    }
+
+    .user-icon {
+      fill: #0099ff;
+      font-size: 5rem;
+    }
+
+    .head {
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      user-select: none;
+      text-shadow: 1px 1px 1px rgba(16, 16, 16, 0.1), 1px 2px 1px rgba(16, 16, 16, 0.1), 1px 3px 1px rgba(16, 16, 16, 0.1), 1px 4px 1px rgba(16, 16, 16, 0.1), 1px 5px 1px rgba(16, 16, 16, 0.1), 1px 6px 1px rgba(16, 16, 16, 0.1), 1px 7px 1px rgba(16, 16, 16, 0.1), 1px 8px 1px rgba(16, 16, 16, 0.1);
+    }
+  }
+
+  .move-enter,
+  .move-leave-to {
+    // transform: scale(0.5);
+    opacity: 0;
+  }
+
+  .move-enter-to,
+  .move-leave {
+    // transform: scale(1);
+    opacity: 1;
+  }
+
+  .move-enter-active,
+  .move-leave-active {
+    transition: opacity .5s;
   }
 </style>
