@@ -10,9 +10,10 @@ import {
   RouteRecordRaw
 } from 'vue-router'
 import Home from '../components/Home.vue'
+import { IRouterList } from '../types/routerType'
 
-
-export const dynamicRoutes = [{
+// 动态路由
+export const dynamicRoutes: Array<IRouterList> = [{
   path: '/',
   component: Home,
   name: 'home',
@@ -32,20 +33,21 @@ export const dynamicRoutes = [{
 },
 ]
 
-const staticRoutes: Array<RouteRecordRaw> = [
+//静态路由
+export const staticRoutes: Array<IRouterList> = [
   {
-    path: '/',
+    name: "login",
+    path: '/login',
     component: () => import('../components/login.vue'),
-    redirect: '/login',
+    hidden: true //导航菜单忽略选项
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('../components/login.vue'),
-    meta: {
-      title: '登录',
-    }
-  }
+    name: "redirect",
+    path: '/',
+    component: Home,
+    redirect: '/welcome',
+    hidden: true,
+  },
 ]
 
 const router = createRouter({

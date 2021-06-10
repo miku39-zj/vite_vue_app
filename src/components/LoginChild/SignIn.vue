@@ -156,7 +156,7 @@
     width: 400px;
     height: 540px;
     border: 1px solid rgba(0, 0, 0, .2);
-    background: hsla(0, 0%, 100%, .1);
+    background: hsla(0, 0%, 100%, .8);
     border-radius: 50px;
     position: absolute;
     left: 50%;

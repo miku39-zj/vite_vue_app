@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-
+import common from './modules/common'
 const defaultState = {
   count: 0
 }
@@ -10,6 +10,7 @@ export default createStore({
     return defaultState
   },
   mutations: {
+    common: Object,
     increment(state: typeof defaultState) {
       state.count++
     }
