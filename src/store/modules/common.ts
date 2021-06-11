@@ -8,18 +8,18 @@ import {
   staticRoutes,
   dynamicRoutes
 } from '../../router'
-import router from '../../router'
+import { IRouterList } from '../../types/routerType'
 
-const common: Object = {
+const common = {
   state: {
     routes: [], //完整路由表
     tagList: [], // tag标签
   },
 
   mutations: {
-    SET_ROUTES: (state: any, routes: any) => {
+    SET_ROUTES: (state: any, routes: Array<IRouterList>) => {
       // 完整的路由表
-      state.routes = staticRoutes.concat(routes)
+      state.routes = [...staticRoutes,...routes]
     },
     //设置标签
     SET_TAGLIST: (state: any, data: any) => {
@@ -43,16 +43,9 @@ const common: Object = {
     // 用户名登录
     generateRoutes({
       commit
-    }: any) {
+    }: any):Promise<Array<IRouterList>> {
       return new Promise(resolve => {
         commit('SET_ROUTES', dynamicRoutes)
-
-        // router.addRoutes(dynamicRoutes);
-        // router.addRoutes([{
-        //   path: '*',
-        //   hidden: true,
-        //   redirect: "/"
-        // }]);
         resolve(dynamicRoutes)
       })
     }

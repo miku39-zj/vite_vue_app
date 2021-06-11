@@ -9,7 +9,7 @@
         <div class="siderBox">
           <div class="siderTitle">
             <svg-icon icon-class='backstage' className="backstage-icon" />
-            <span>后台管理系统</span>
+            <span>后台管理系统VUE3</span>
           </div>
           <div class="siderMain">
             <el-menu class="siderMenu" background-color="#333744" text-color="#ffffff" active-text-color="#ffffff"
@@ -54,17 +54,48 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, Ref } from 'vue'
-
-export default defineComponent({
-  setup () {
-    const isCollapse: Ref<boolean> = ref<boolean>(false)
-    const toggleActive: Ref<boolean> = ref<boolean>(false)
-    return {}
-  }
-})
+  import {
+    defineComponent,
+    ref,
+    Ref
+  } from 'vue'
+  import {
+    mapGetters
+  } from "vuex";
+  import MenuItem from './MenuItem/MenuItem.vue'
+  export default defineComponent({
+    components:{
+      MenuItem,
+    },
+    computed: {
+      ...mapGetters(["common_routes", "tagList"]),
+      activeMenu() {
+        const route = this.$route;
+        const {
+          meta,
+          path,
+          name
+        } = route;
+        if (meta.activeMenu) {
+          return meta.activeMenu;
+        }
+        return name;
+      },
+    },
+    setup() {
+      const isCollapse: Ref < boolean > = ref < boolean > (false)
+      const toggleActive: Ref < boolean > = ref < boolean > (false)
+      const toggleCollapse = async () => {
+        isCollapse.value = !isCollapse.value
+        toggleActive.value = !toggleActive.value
+      }
+      return {}
+    }
+  })
 </script>
 
-<style scoped>
-
+<style lang="less" scoped>
+  /deep/.router-link-active {
+    text-decoration: none !important;
+  }
 </style>
