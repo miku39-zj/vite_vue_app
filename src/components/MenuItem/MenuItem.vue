@@ -26,9 +26,11 @@
 
 <script lang="ts">
   import {
-    defineComponent
+    defineComponent,
+    Ref,
+    ref
   } from 'vue'
-
+  import { IRouterList } from '../../types/routerType'
   export default defineComponent({
     name: "MenuItem",
     props: {
@@ -46,13 +48,39 @@
       }
     },
     setup(props, context) {
-
-
-      return {}
+      const onlyOneChild: Ref = ref(null)
+      const checkOneChild = (children: Array<IRouterList> | []  = [], parent: IRouterList) => {
+        const showingChildren: Array<IRouterList> | [] = children.filter(item => {
+          if (item.hidden) {
+            return false
+          } else {
+            onlyOneChild.value = item
+            return true
+          }
+        })
+        if (showingChildren.length === 1) {
+          return true
+        }
+        if (showingChildren.length === 0) {
+          onlyOneChild.value = {
+            ...parent,
+            noShowingChildren: true
+          }
+          // console.log(this.onlyOneChild, "this.onlyOneChild");
+          return true
+        }
+        return false
+      }
+      return {
+        checkOneChild,
+        onlyOneChild
+      }
     }
   })
 </script>
 
 <style scoped>
-
+  .el-menu-item.is-active {
+    background: #1A86EE !important;
+  }
 </style>
