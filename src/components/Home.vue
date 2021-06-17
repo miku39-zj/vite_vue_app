@@ -69,7 +69,9 @@
     computed
   } from 'vue'
   import {
-    mapGetters
+    mapGetters, 
+    Store,
+    useStore
   } from "vuex";
   import MenuItem from './MenuItem/MenuItem.vue'
   import TagsViews from './TagsViews/TagsViews.vue'
@@ -77,7 +79,8 @@
   import BreadCrumb from './BreadCrumb/BreadCrumb.vue'
   import {
     useRoute,
-    useRouter
+    useRouter,
+    RouteLocationNormalizedLoaded
   } from "vue-router";
   export default defineComponent({
     components: {
@@ -102,9 +105,9 @@
     //   },
     // },
     setup() {
-      const common_routes = computed(() => mapGetters(["common_routes"])["common_routes"])
-      console.log(common_routes, "common_routes");
-      const route = useRoute();
+      const store: Store<any> = useStore()
+      const route: RouteLocationNormalizedLoaded = useRoute();
+      const common_routes = computed(() => store.getters.common_routes)
       const activeMenu = computed(() => {
         const itemRoute = route;
         const {
@@ -139,7 +142,7 @@
     text-decoration: none !important;
   }
 
-  .app-Layout {
+  .app-layout {
     width: 100%;
     height: 100%;
     overflow: hidden;

@@ -37,13 +37,19 @@
     defineComponent
   } from 'vue'
   import {
-    mapGetters
+    mapGetters,
+    Store,
+    useStore
   } from "vuex";
   export default defineComponent({
     setup() {
-      const tagList = computed(() => mapGetters(["tagList"])["tagList"])
+      const store: Store<any> = useStore()
+      const tagList = computed(() => store.getters.tagList)
       const showTags = computed(() => tagList.value.length)
-      return {}
+      return {
+        tagList,
+        showTags
+      }
     }
   })
 </script>

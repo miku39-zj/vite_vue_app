@@ -23,7 +23,7 @@ export const dynamicRoutes: Array<IRouterList> = [{
   },
   children: [{
     path: '/welcome',
-    component: () => import('@/components/Welcome.vue'),
+    component: () => import('../components/Welcome.vue'),
     name: 'welcome',
     meta: {
       title: "欢迎页",
@@ -44,7 +44,7 @@ export const staticRoutes: Array<IRouterList> = [
   {
     name: "redirect",
     path: '/',
-    component: Home,
+    component: () => import('../components/Home.vue'),
     redirect: '/welcome',
     hidden: true,
   },
