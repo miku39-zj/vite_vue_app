@@ -1,9 +1,6 @@
 /*
  * @Description: 
  */
-/*
- * @Description: 
- */
 import {
   staticRoutes,
   dynamicRoutes
@@ -19,7 +16,7 @@ const common = {
   mutations: {
     SET_ROUTES: (state: any, routes: Array<IRouterList>) => {
       // 完整的路由表
-      state.routes = [...staticRoutes,...routes]
+      state.routes = staticRoutes.concat(routes)
     },
     //设置标签
     SET_TAGLIST: (state: any, data: any) => {
@@ -45,6 +42,8 @@ const common = {
       commit
     }: any):Promise<Array<IRouterList>> {
       return new Promise(resolve => {
+        console.log(dynamicRoutes,"dynamicRoutes");
+        
         commit('SET_ROUTES', dynamicRoutes)
         resolve(dynamicRoutes)
       })

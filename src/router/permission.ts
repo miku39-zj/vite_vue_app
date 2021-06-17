@@ -6,6 +6,7 @@ import store from '../store/index'
 
 import NProgress from 'nprogress'
 
+
 NProgress.inc(0.2)
 NProgress.configure({
   easing: 'ease',
@@ -23,7 +24,8 @@ router.beforeEach(async (to: any, from: any, next: any) => {
     return next()
   }
   const accessRoutes = await store.dispatch('generateRoutes')
-  // console.log(accessRoutes,213);
+  console.log(router,"router");
+  console.log(accessRoutes,213);
   router.addRoute(accessRoutes)
 
   // 继续路由切换,确保addRoutes完成

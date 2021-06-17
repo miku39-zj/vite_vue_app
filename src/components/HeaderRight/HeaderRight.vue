@@ -51,6 +51,7 @@
     useRouter
   } from "vue-router";
   export default defineComponent({
+    name:"HeaderRight",
     setup() {
       const router = useRouter();
       const route = useRoute();

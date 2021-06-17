@@ -41,9 +41,16 @@
           <TagsViews />
           <!-- 路由占位符 -->
           <div class="main-views">
-            <transition name="move" mode="out-in">
+            <!-- <transition name="move" mode="out-in">
               <router-view />
-            </transition>
+            </transition> -->
+            <router-view v-slot="{ Component }">
+              <transition name="move" mode="out-in">
+                <keep-alive>
+                  <component :is="Component" />
+                </keep-alive>
+              </transition>
+            </router-view>
           </div>
 
         </el-main>
@@ -56,40 +63,73 @@
 <script lang="ts">
   import {
     defineComponent,
+    reactive,
     ref,
-    Ref
+    Ref,
+    computed
   } from 'vue'
   import {
     mapGetters
   } from "vuex";
   import MenuItem from './MenuItem/MenuItem.vue'
+  import TagsViews from './TagsViews/TagsViews.vue'
+  import HeaderRight from './HeaderRight/HeaderRight.vue'
+  import BreadCrumb from './BreadCrumb/BreadCrumb.vue'
+  import {
+    useRoute,
+    useRouter
+  } from "vue-router";
   export default defineComponent({
-    components:{
+    components: {
       MenuItem,
+      TagsViews,
+      HeaderRight,
+      BreadCrumb
     },
-    computed: {
-      ...mapGetters(["common_routes", "tagList"]),
-      activeMenu() {
-        const route = this.$route;
+    // computed: {
+    //   ...mapGetters(["common_routes"]),
+    //   activeMenu() {
+    //     const route = this.$route;
+    //     const {
+    //       meta,
+    //       path,
+    //       name
+    //     } = route;
+    //     if (meta.activeMenu) {
+    //       return meta.activeMenu;
+    //     }
+    //     return name;
+    //   },
+    // },
+    setup() {
+      const common_routes = computed(() => mapGetters(["common_routes"])["common_routes"])
+      console.log(common_routes, "common_routes");
+      const route = useRoute();
+      const activeMenu = computed(() => {
+        const itemRoute = route;
         const {
           meta,
           path,
           name
-        } = route;
+        } = itemRoute;
         if (meta.activeMenu) {
           return meta.activeMenu;
         }
         return name;
-      },
-    },
-    setup() {
+      })
       const isCollapse: Ref < boolean > = ref < boolean > (false)
       const toggleActive: Ref < boolean > = ref < boolean > (false)
       const toggleCollapse = async () => {
         isCollapse.value = !isCollapse.value
         toggleActive.value = !toggleActive.value
       }
-      return {}
+      return {
+        isCollapse,
+        toggleActive,
+        toggleCollapse,
+        activeMenu,
+        common_routes
+      }
     }
   })
 </script>
@@ -97,5 +137,149 @@
 <style lang="less" scoped>
   /deep/.router-link-active {
     text-decoration: none !important;
+  }
+
+  .app-Layout {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .home-comtainer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 1s;
+  }
+
+  .home-sider {
+    background-image: linear-gradient(#001529, #001529);
+    height: 100%;
+    transition: width .3s;
+
+    .siderBox {
+      width: 100%;
+      height: 100%;
+    }
+
+
+    .siderTitle {
+      width: 100%;
+      height: 50px;
+      border-bottom: 1px solid #dcdfe6;
+      color: #ffffff;
+      box-sizing: border-box;
+      text-align: left;
+      line-height: 50px;
+      font-size: 16px;
+      overflow: hidden;
+
+      .backstage-icon {
+        fill: #3E64FF;
+        margin: 0 10px 0 25px;
+      }
+    }
+
+    .siderMain {
+      width: 100%;
+      height: calc(100% - 64px);
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .siderMenu {
+      width: 100%;
+    }
+  }
+
+
+  .home-header {
+    background: linear-gradient(125deg, #ECFCFF 0%, #ECFCFF 40%, #B2FCFF calc(40% + 1px), #B2FCFF 60%, #5EDFFF calc(60% + 1px), #5EDFFF 72%, #3E64FF calc(72% + 1px), #3E64FF 100%);
+    // background-image: linear-gradient(to right, #ffffff, #ffffff);
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #dcdfe6;
+
+    .headerBox {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .headersLeft {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .leftBox {
+      transition: all 0.5s;
+      transform-origin: center center;
+      line-height: 50px;
+      width: 20px;
+      height: 100%;
+      margin-right: 15px;
+    }
+
+    .toggleLeftBox {
+      transform: rotate(180deg);
+    }
+
+    .fold-icon {
+      transition: all 0.5s;
+      transform-origin: center center;
+      width: 20px;
+      height: 100%;
+      margin-right: 15px;
+    }
+  }
+
+  .main {
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+  }
+
+  .home-main {
+    width: 100%;
+    height: 100%;
+    // background-color: #eaedf1;
+    padding: 0px !important;
+  }
+
+  .main-views {
+    padding: 10px 10px 0 10px;
+    width: 100%;
+    box-sizing: border-box;
+    height: calc(100% - 35px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    overflow: '-moz-scrollbars-none';
+    scrollbar-width: none;
+    /*  火狐   */
+    background: #F5F7F9;
+    // background-image: linear-gradient(to right, #ffffff, #ffffff)
+  }
+
+  .iconfont {
+    margin-right: 10px;
+  }
+
+  .move-enter,
+  .move-leave-to {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  .move-enter-to,
+  .move-leave {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .move-enter-active,
+  .move-leave-active {
+    transition: all 0.5s;
   }
 </style>
