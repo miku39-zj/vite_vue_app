@@ -17,7 +17,7 @@ export default defineConfig({
   
   resolve: {
     alias: {  // 路径别名定义
-      '@': resolve(__dirname, 'src'), // 设置 `@` 指向 `src` 目录
+      '@': resolve(__dirname, './src'), // 设置 `@` 指向 `src` 目录
       'comps': resolve(__dirname,'src/components'),
       'apis': resolve(__dirname,'src/apis'),
       'views': resolve(__dirname,'src/views'),
