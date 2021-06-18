@@ -69,7 +69,7 @@
     computed
   } from 'vue'
   import {
-    mapGetters, 
+    mapGetters,
     Store,
     useStore
   } from "vuex";
@@ -105,7 +105,7 @@
     //   },
     // },
     setup() {
-      const store: Store<any> = useStore()
+      const store: Store < any > = useStore()
       const route: RouteLocationNormalizedLoaded = useRoute();
       const common_routes = computed(() => store.getters.common_routes)
       const activeMenu = computed(() => {
@@ -197,7 +197,8 @@
 
 
   .home-header {
-    background: linear-gradient(125deg, #ECFCFF 0%, #ECFCFF 40%, #B2FCFF calc(40% + 1px), #B2FCFF 60%, #5EDFFF calc(60% + 1px), #5EDFFF 72%, #3E64FF calc(72% + 1px), #3E64FF 100%);
+    background: radial-gradient(ellipse farthest-side at 76% 77%, rgba(245, 228, 212, 0.25) 4%, rgba(255, 255, 255, 0) calc(4% + 1px)), radial-gradient(circle at 76% 40%, #fef6ec 4%, rgba(255, 255, 255, 0) 4.18%), linear-gradient(135deg, #ff0000 0%, #000036 100%), radial-gradient(ellipse at 28% 0%, #ffcfac 0%, rgba(98, 149, 144, 0.5) 100%), linear-gradient(180deg, #cd6e8a 0%, #f5eab0 69%, #d6c8a2 70%, #a2758d 100%); background-blend-mode: normal, normal, screen, overlay, normal;
+    // background: linear-gradient(125deg, #ECFCFF 0%, #ECFCFF 40%, #B2FCFF calc(40% + 1px), #B2FCFF 60%, #5EDFFF calc(60% + 1px), #5EDFFF 72%, #3E64FF calc(72% + 1px), #3E64FF 100%);
     // background-image: linear-gradient(to right, #ffffff, #ffffff);
     margin: 0;
     padding: 0;

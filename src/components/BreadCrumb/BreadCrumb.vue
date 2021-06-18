@@ -1,9 +1,8 @@
 <!--
  * @Description: 
 -->
-
 <template>
-  <el-breadcrumb class="breadcrumb" separator-class="el-icon-d-arrow-right">
+  <el-breadcrumb class="breadcrumb" separator-class="el-icon-caret-right">
     <transition-group name="breadcrumb" mode="out-in">
       <el-breadcrumb-item v-for="(item,index)  in levelList" :key="item.path">
         <span v-if='item.redirect==="home"||index==levelList.length-1'>{{item.meta.title}}</span>
@@ -19,24 +18,23 @@
     Ref,
     ref,
     watchEffect,
-    
   } from 'vue'
   import {
     useRoute,
-    useRouter
+    useRouter,
   } from "vue-router";
   export default defineComponent({
     setup(porps, content) {
       const levelList: Ref = ref(null)
       const route = useRoute();
       const getBreadcrumb = () => {
-        let matched: any = route.matched.filter(
+        let matched: any[] = route.matched.filter(
           item => item.meta && item.meta.title && item.meta.breadcrumb !== false
         )
-        const first = matched[0]
+        const first: any = matched[0]
         if (first && first.name !== "home") { // 不是首页，添加首页
           matched = [{
-            path: '/home',
+            path: '/welcome',
             meta: {
               title: '首页'
             }
@@ -44,11 +42,9 @@
         }
         levelList.value = matched
       }
-      // const $route = watchEffect(() => getBreadcrumb())
-
+      getBreadcrumb()
       return {
-        levelList,
-        getBreadcrumb
+        levelList
       }
     },
 
