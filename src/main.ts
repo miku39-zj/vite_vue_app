@@ -13,6 +13,8 @@ import 'element-plus/lib/theme-chalk/index.css';
 import './router/permission'
 import 'nprogress/nprogress.css'
 
+
+
 const app = createApp(App)
 app.component('svg-icon', svgIcon)
 app.use(router)

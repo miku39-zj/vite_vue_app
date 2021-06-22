@@ -75,7 +75,9 @@
         }
       }
       return {
-        handleCommand
+        handleCommand,
+        handleFullScreen,
+        message
       }
     }
   })

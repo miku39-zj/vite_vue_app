@@ -9,7 +9,7 @@
         <div class="siderBox">
           <div class="siderTitle">
             <svg-icon icon-class='backstage' className="backstage-icon" />
-            <span>后台管理系统VUE3</span>
+            <span>vue3+vite</span>
           </div>
           <div class="siderMain">
             <el-menu class="siderMenu" background-color="#333744" text-color="#ffffff" active-text-color="#ffffff"
@@ -48,7 +48,7 @@
               </transition>
             </router-view>
           </div>
-
+          
         </el-main>
       </el-container>
 
@@ -78,14 +78,21 @@
     useRouter,
     RouteLocationNormalizedLoaded
   } from "vue-router";
+  // import lottie from 'vue-lottie'
+  import * as animationData from '../assets/lottie/65358-loading-dino.json';
   export default defineComponent({
     components: {
       MenuItem,
       TagsViews,
       HeaderRight,
-      BreadCrumb
+      BreadCrumb,
+      // lottie
     },
     setup() {
+      const defaultOptions: Ref < object > = ref < object > ({
+        animationData: animationData
+      })
+
       const store: Store < any > = useStore()
       const route: RouteLocationNormalizedLoaded = useRoute();
       const common_routes = computed(() => store.getters.common_routes)
@@ -137,7 +144,7 @@
   }
 
   .home-sider {
-    background-image: linear-gradient(#001529, #001529);
+    background-image: linear-gradient(#B2FCFF, #B2FCFF);
     height: 100%;
     transition: width .3s;
 
@@ -151,12 +158,13 @@
       width: 100%;
       height: 50px;
       border-bottom: 1px solid #dcdfe6;
-      color: #ffffff;
+      color: #000;
       box-sizing: border-box;
       text-align: left;
       line-height: 50px;
       font-size: 16px;
       overflow: hidden;
+      font-weight: bolder;
 
       .backstage-icon {
         fill: #3E64FF;
@@ -245,8 +253,8 @@
     scrollbar-width: none;
     /*  火狐   */
     // background: #F5F7F9;
-    background: linear-gradient(125deg, #ECFCFF 0%, #ECFCFF 40%, #B2FCFF calc(40% + 1px), #B2FCFF 60%, #5EDFFF calc(60% + 1px), #5EDFFF 72%, #3E64FF calc(72% + 1px), #3E64FF 100%);
-    // background-image: linear-gradient(to right, #ffffff, #ffffff)
+    // background: linear-gradient(125deg, #ECFCFF 0%, #ECFCFF 40%, #B2FCFF calc(40% + 1px), #B2FCFF 60%, #5EDFFF calc(60% + 1px), #5EDFFF 72%, #3E64FF calc(72% + 1px), #3E64FF 100%);
+    background-image: linear-gradient(to right, #ECFCFF, #ECFCFF)
   }
 
   .iconfont {

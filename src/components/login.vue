@@ -158,7 +158,7 @@
 
   .move-enter,
   .move-leave-to {
-    // transform: scale(0.5);
+    // transform:skew(180deg);
     opacity: 0;
   }
 
@@ -170,6 +170,6 @@
 
   .move-enter-active,
   .move-leave-active {
-    transition: opacity .5s;
+    transition: all .5s;
   }
 </style>

@@ -45,6 +45,8 @@
   } from "vue-router";
   export default defineComponent({
     setup() {
+      // const modulesFiles = require.context('./modules', true, /\.js$/); // webpack
+      // const modulesFiles = import.meta.globEager("./module/*.js") // vite;
       const store: Store < any > = useStore()
       const route: RouteLocationNormalizedLoaded = useRoute();
       const router = useRouter()
@@ -128,7 +130,7 @@
     float: left;
     margin: 3px 5px 2px 3px;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
+    border-radius: 2px;
     font-size: 12px;
     overflow: hidden;
     cursor: pointer;
@@ -136,6 +138,7 @@
     background: rgba(255, 255, 255, .8);
     padding: 0 10px 0 10px;
     vertical-align: middle;
+    text-align: center;
     color: #666;
     transition: all 0.3s ease-in;
   }
