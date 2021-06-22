@@ -31,6 +31,24 @@ export const dynamicRoutes: Array<IRouterList> = [{
     }
   }]
 },
+{
+  path: '/',
+  component: Home,
+  name: 'anim',
+  meta: {
+    title: "动画",
+    icon: 'el-icon-bicycle'
+  },
+  children: [{
+    path: '/lottie',
+    component: () => import('../views/Lottie/lottie.vue'),
+    name: 'lottie',
+    meta: {
+      title: "动画",
+      icon: 'el-icon-bicycle',
+    }
+  }]
+},
 ]
 
 //静态路由

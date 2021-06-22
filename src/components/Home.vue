@@ -12,7 +12,7 @@
             <span>vue3+vite</span>
           </div>
           <div class="siderMain">
-            <el-menu class="siderMenu" background-color="#333744" text-color="#ffffff" active-text-color="#ffffff"
+            <el-menu class="siderMenu" background-color="rgb(121, 162, 165)" text-color="#ffffff" active-text-color="#ffffff"
               unique-opened :collapse="isCollapse" :collapse-transition="false" router :default-active="activeMenu"
               mode="vertical">
               <MenuItem v-for="route in common_routes" :key="route.name" :item="route" :base-path="route.path">
