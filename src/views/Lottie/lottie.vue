@@ -3,7 +3,10 @@
 -->
 <template>
   <div class="box">
-    <lottie :options="defaultOptions" :height="400" :width="400" @animCreated="handleAnimation" />
+    <lottie :options="defaultOptions" :height="500" :width="500" @animCreated="handleAnimation" />
+    <el-button type="primary" @click="stop">停止</el-button>
+    <br/>
+    <el-button type="primary" @click="start" :style="{['margin-top']: '10px'}">开始</el-button>
   </div>
 </template>
 
@@ -16,8 +19,7 @@
     reactive
   } from 'vue'
   import Lottie from './index.vue';
-  // import lottie from 'lottie-web';
-  import * as animationData from '../../assets/lottie/65358-loading-dino.json';
+  import * as animationData from '../../assets/lottie/60820-bicycle-riding.json';
   export default defineComponent({
     components: {
       'lottie': Lottie
@@ -26,14 +28,23 @@
       const defaultOptions = reactive({
         animationData: animationData
       })
-      let anim: undefined
-      const handleAnimation = async (anim: any) => {
-        anim = anim
+      let anim: any = ref(null)
+      const handleAnimation = async (animParam: any) => {
+        anim = animParam
+        anim.play()
+      }
+      const stop = async () => {
+        anim.stop()
+      }
+      const start = async ()=> {
         anim.play()
       }
       return {
         defaultOptions,
-        handleAnimation
+        handleAnimation,
+        anim,
+        stop,
+        start
       }
     }
   })

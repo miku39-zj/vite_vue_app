@@ -23,7 +23,9 @@
       height: Number,
       width: Number,
     },
+    emits: ['animCreated'],
     setup(props, context) {
+      //#region 
       // fetch('src/assets/lottie/65358-loading-dino.json')
       //   .then(data => {
       //     const anim = lottie.loadAnimation({
@@ -46,6 +48,7 @@
       // });
       // animation.playCount = 800;
       // })
+      //#endregion
       const lavContainer = ref(null)
       const style = reactive({
         width: props.width ? `${props.width}px` : '100%',
