@@ -43,6 +43,7 @@
         levelList.value = matched
       }
       getBreadcrumb()
+      watchEffect(() => getBreadcrumb())
       return {
         levelList
       }

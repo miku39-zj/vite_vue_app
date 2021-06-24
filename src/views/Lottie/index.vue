@@ -1,17 +1,13 @@
 <!--
  * @Description: 
 -->
-<template>
-  <div :style="style" ref="lavContainer" class="lavContainer"></div>
-</template>
-
 <script lang="ts">
   import {
     defineComponent,
     onMounted,
     reactive,
     ref,
-    nextTick
+    h
   } from 'vue'
   import lottie from 'lottie-web';
   export default defineComponent({
@@ -49,7 +45,7 @@
       // animation.playCount = 800;
       // })
       //#endregion
-      const lavContainer = ref(null)
+      const lavContainer = ref < any > (null)
       const style = reactive({
         width: props.width ? `${props.width}px` : '100%',
         height: props.height ? `${props.height}px` : '100%',
@@ -58,7 +54,7 @@
       })
       onMounted(() => {
         const anim = lottie.loadAnimation({
-          container: lavContainer.value || new HTMLElement(),
+          container: lavContainer.value,
           renderer: 'svg',
           loop: props.options.loop !== false,
           autoplay: props.options.autoplay !== false,
@@ -68,9 +64,27 @@
         context.emit('animCreated', anim)
       })
       return {
-        style,
-        lavContainer
+        lavContainer,
+        style
       }
+      // return () => h(
+      //   'div', {
+      //     style: style,
+      //     ref: lavContainer
+      //   }
+      // )
+    },
+    render() {
+      const {
+        style
+      } = this
+      return h( 
+        'div',
+        {
+          style: style,
+          ref: 'lavContainer'
+        }
+      )
     }
   })
 </script>

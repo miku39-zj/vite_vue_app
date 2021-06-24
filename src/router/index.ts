@@ -49,6 +49,24 @@ export const dynamicRoutes: Array<IRouterList> = [{
     }
   }]
 },
+{
+  path: '/',
+  component: Home,
+  name: 'virtuallist',
+  meta: {
+    title: "虚拟列表",
+    icon: 'el-icon-bicycle'
+  },
+  children: [{
+    path: '/VirtualList',
+    component: () => import('../views/VirtualList/index.vue'),
+    name: 'virtual',
+    meta: {
+      title: "虚拟列表",
+      icon: 'el-icon-bicycle',
+    }
+  }]
+},
 ]
 
 //静态路由

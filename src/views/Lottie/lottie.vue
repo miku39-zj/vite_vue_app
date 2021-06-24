@@ -5,7 +5,7 @@
   <div class="box">
     <lottie :options="defaultOptions" :height="500" :width="500" @animCreated="handleAnimation" />
     <el-button type="primary" @click="stop">停止</el-button>
-    <br/>
+    <br />
     <el-button type="primary" @click="start" :style="{['margin-top']: '10px'}">开始</el-button>
   </div>
 </template>
@@ -14,8 +14,6 @@
   import {
     defineComponent,
     ref,
-    onMounted,
-    nextTick,
     reactive
   } from 'vue'
   import Lottie from './index.vue';
@@ -26,6 +24,8 @@
     },
     setup() {
       const defaultOptions = reactive({
+        loop: true,
+        autoplay: false,
         animationData: animationData
       })
       let anim: any = ref(null)
@@ -36,7 +36,7 @@
       const stop = async () => {
         anim.stop()
       }
-      const start = async ()=> {
+      const start = async () => {
         anim.play()
       }
       return {

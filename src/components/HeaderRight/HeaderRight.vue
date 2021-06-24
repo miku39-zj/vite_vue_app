@@ -76,6 +76,7 @@
       }
       return {
         handleCommand,
+        fullscreen,
         handleFullScreen,
         message
       }
