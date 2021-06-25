@@ -17,7 +17,9 @@
     onMounted,
     reactive,
     Ref,
-    ref
+    ref,
+    onBeforeUpdate,
+    nextTick
   } from 'vue'
   import VirtualList from "./VirtualList.vue";
   import {
@@ -29,15 +31,18 @@
       VirtualList
     },
     setup() {
-      const divs: Ref<Array<any>> = ref<Array<any>>([])
+      const divs: Ref < Array < any >> = ref < Array < any >> ([])
       const FakerData: Array < IData > = reactive < Array < IData >> (data)
       onMounted(() => {
-        console.log(divs,"items132321132");
-        
-        divs.value.forEach(e => {
-          console.log(e.clientHeight);
-          
-        });
+        nextTick(() => {
+          console.log(divs.value, " divs.value456");
+          divs.value.forEach(e => {
+            console.log(e.clientHeight);
+          });
+        })
+      })
+      onBeforeUpdate(() => {
+        divs.value = []
       })
       return {
         FakerData,

@@ -7,7 +7,7 @@
       <li class="tags-li" v-for="(item,index) in tagList" :class="{'active': isActive(item.path)}" :key="index">
         <router-link :to="item.path" class="tags-li-title">{{item.title}}</router-link>
         <span @click="closeTags(index)" v-if="item.title !== '欢迎页'">
-          <i class="el-icon-close"></i>
+          <svg-icon icon-class='close' className="close-icon" />
         </span>
       </li>
     </ul>
@@ -75,7 +75,9 @@
           router.push("/");
         }
       }
-      const setTag = (route: any) => {
+      const setTag = async (route: any) => {
+        console.log(route,"route");
+        
         const isExist = tagList.value.some((item: any) => {
           return item.path === route.fullPath;
         });
@@ -92,7 +94,6 @@
           });
         }
       }
-
       watchEffect(() => setTag(route))
 
       return {
@@ -166,7 +167,11 @@
   .tags-li.active .tags-li-title {
     color: #fff;
   }
-
+  .close-icon {
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+  }
   .tags-close-box {
     position: absolute;
     right: 0;

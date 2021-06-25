@@ -22,7 +22,6 @@ export default defineConfig({
       'apis': resolve(__dirname,'src/apis'),
       'views': resolve(__dirname,'src/views'),
       'utils': resolve(__dirname,'src/utils'),
-      'routes': resolve(__dirname,'src/router'),
       'styles': resolve(__dirname,'src/styles')
     }
   },
@@ -33,7 +32,7 @@ export default defineConfig({
     port: 4500, // 设置服务启动端口号
     open: true, // 设置服务启动时是否自动打开浏览器
     cors: true, // 允许跨域
-    host: '0.0.0.0'
+    host: '0.0.0.0',
     // 设置代理，根据我们项目实际情况配置
     // proxy: {
     //   '/api': {

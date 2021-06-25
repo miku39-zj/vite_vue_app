@@ -49,7 +49,7 @@ export const dynamicRoutes: Array<IRouterList> = [{
 {
   path: '/',
   component: Home,
-  name: 'virtuallist',
+  name: 'virtual',
   meta: {
     title: "虚拟列表",
     icon: 'el-icon-sunrise'
@@ -57,7 +57,7 @@ export const dynamicRoutes: Array<IRouterList> = [{
   children: [{
     path: '/VirtualList',
     component: () => import('../views/VirtualList/index.vue'),
-    name: 'virtual',
+    name: 'VirtualList',
     meta: {
       title: "虚拟列表",
       icon: 'el-icon-sunrise',

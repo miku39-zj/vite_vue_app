@@ -5,11 +5,12 @@
   <div ref="vList" class="virtual-list-contain" @scroll="scrollEvent($event)">
     <div class="virtual-list-model" :style="{ height: listHeight + 'px' }"></div>
     <div class="virtual-list" :style="{'transform': getTransform}">
-      <div class="virtual-item" v-for="(item,i) in visibleData" :key="item.id" :ref="el => { if (el) items[i] = el }"
+      <div class="virtual-item" v-for="(item,i) in visibleData" :key="item.id" :ref="setIemref"
         :style="{ height: itemSize + 'px',lineHeight: itemSize + 'px' }">
         <slot name="content" :item="item" :i="i"></slot>
       </div>
     </div>
+    <div style="width: 100%;height: 0px"></div>
   </div>
 </template>
 
@@ -38,7 +39,7 @@
     },
     setup(props, content) {
       const vList: any = ref(null)
-      const items: Ref<Array<any>> = ref<Array<any>>([])
+      const items: any = ref<any>([])
       // 可视高度
       const screenHeight = ref(0)
       // 偏移量
@@ -61,7 +62,11 @@
         let scrollTop = vList.value.scrollTop;
         start.value = Math.floor(scrollTop / props.itemSize);
         end.value = start.value + visibleCount.value;
+        
         startOffset.value = scrollTop - (scrollTop % props.itemSize);
+      }
+      const setIemref = (el: Element) => {
+        items.value.push(el)
       }
       onBeforeUpdate(() => {
         items.value = []
@@ -71,7 +76,9 @@
         screenHeight.value = vList.value.clientHeight
         start.value = 0
         end.value = start.value + visibleCount.value
-        console.log(vList.value, "vList.value");
+        nextTick(() => {
+          console.log(items,"itemsitems132");
+        })
       })
       return {
         vList,
@@ -80,7 +87,8 @@
         visibleCount,
         getTransform,
         visibleData,
-        scrollEvent
+        scrollEvent,
+        setIemref
       }
     }
   })
@@ -89,7 +97,7 @@
 <style scoped>
   .virtual-list-contain {
     border: 1px solid #999;
-    height: 80%;
+    height: 600px;
     width: 50%;
     overflow: auto;
     position: relative;
