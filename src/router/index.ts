@@ -1,9 +1,6 @@
 /*
  * @Description: 
  */
-/*
- * @Description: 
- */
 import {
   createRouter,
   createWebHashHistory,
@@ -55,7 +52,7 @@ export const dynamicRoutes: Array<IRouterList> = [{
   name: 'virtuallist',
   meta: {
     title: "虚拟列表",
-    icon: 'el-icon-bicycle'
+    icon: 'el-icon-sunrise'
   },
   children: [{
     path: '/VirtualList',
@@ -63,7 +60,7 @@ export const dynamicRoutes: Array<IRouterList> = [{
     name: 'virtual',
     meta: {
       title: "虚拟列表",
-      icon: 'el-icon-bicycle',
+      icon: 'el-icon-sunrise',
     }
   }]
 },

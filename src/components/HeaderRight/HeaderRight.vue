@@ -23,7 +23,7 @@
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <a href="https://github.com/kangnaj/vite-vue-app" target="_blank">
+              <a href="https://github.com/kangnaj/vite_vue_app" target="_blank">
                 <el-dropdown-item class="projectIcon">
                   <svg-icon icon-class='github' className="github-icon" />
                   项目仓库

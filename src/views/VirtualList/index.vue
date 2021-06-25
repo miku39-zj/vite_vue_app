@@ -3,38 +3,52 @@
 -->
 <template>
   <div class="box">
-    <VirtualList :listData="data"></VirtualList>
+    <VirtualList :listData="FakerData">
+      <template #content="scoped">
+        <div :ref="el => { if (el) divs[scoped.i] = el }">{{scoped.item.value}}</div>
+      </template>
+    </VirtualList>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-import VirtualList from "./VirtualList.vue";
-
-interface IData {
-  id: number | string
-  value: any
-}
-
-export default defineComponent({
-  components: {
-    VirtualList
-  },
-  setup () {
-    const data: Array<IData> = reactive<Array<IData>>([])
-    for(let i = 0; i < 10000; i++) {
-      data.push({id: 1, value: i})
+  import {
+    defineComponent,
+    onMounted,
+    reactive,
+    Ref,
+    ref
+  } from 'vue'
+  import VirtualList from "./VirtualList.vue";
+  import {
+    data,
+    IData
+  } from "./FakerData"
+  export default defineComponent({
+    components: {
+      VirtualList
+    },
+    setup() {
+      const divs: Ref<Array<any>> = ref<Array<any>>([])
+      const FakerData: Array < IData > = reactive < Array < IData >> (data)
+      onMounted(() => {
+        console.log(divs,"items132321132");
+        
+        divs.value.forEach(e => {
+          console.log(e.clientHeight);
+          
+        });
+      })
+      return {
+        FakerData,
+        divs
+      }
     }
-
-    return {
-      data
-    }
-  }
-})
+  })
 </script>
 
 <style scoped>
-.box {
-  height: 100%;
-}
+  .box {
+    height: 100%;
+  }
 </style>

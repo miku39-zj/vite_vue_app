@@ -62,7 +62,7 @@ export const svgBuilder = (
   if (path === '') return
   idPerfix = perfix
   const res = findSvgFile(path)
-  console.log(res,"res");
+  console.log(res,"resasd");
   
   // console.log(res.length)
   // const res = []
