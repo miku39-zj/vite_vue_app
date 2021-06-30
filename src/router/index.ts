@@ -4,7 +4,6 @@
 import {
   createRouter,
   createWebHashHistory,
-  RouteRecordRaw
 } from 'vue-router'
 import Home from '../components/Home.vue'
 import { IRouterList } from '../types/routerType'
@@ -16,7 +15,7 @@ export const dynamicRoutes: Array<IRouterList> = [{
   name: 'home',
   meta: {
     title: "首页",
-    icon: 'el-icon-s-home'
+    icon: 'home'
   },
   children: [{
     path: '/welcome',
@@ -24,17 +23,17 @@ export const dynamicRoutes: Array<IRouterList> = [{
     name: 'welcome',
     meta: {
       title: "欢迎页",
-      icon: 'el-icon-s-home',
+      icon: 'home',
     }
   }]
 },
 {
   path: '/',
   component: Home,
-  name: 'anim',
+  name: 'component',
   meta: {
-    title: "动画",
-    icon: 'el-icon-bicycle'
+    title: "组件",
+    icon: 'component'
   },
   children: [{
     path: '/lottie',
@@ -42,28 +41,20 @@ export const dynamicRoutes: Array<IRouterList> = [{
     name: 'lottie',
     meta: {
       title: "动画",
-      icon: 'el-icon-bicycle',
+      icon: 'mooncloud',
     }
-  }]
-},
-{
-  path: '/',
-  component: Home,
-  name: 'virtual',
-  meta: {
-    title: "虚拟列表",
-    icon: 'el-icon-sunrise'
   },
-  children: [{
+  {
     path: '/VirtualList',
     component: () => import('../views/VirtualList/index.vue'),
     name: 'VirtualList',
     meta: {
       title: "虚拟列表",
-      icon: 'el-icon-sunrise',
+      icon: 'rain',
     }
   }]
 },
+
 ]
 
 //静态路由

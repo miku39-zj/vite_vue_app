@@ -2,7 +2,7 @@
  * @Description: 
 -->
 <template>
-  <el-breadcrumb class="breadcrumb" separator-class="el-icon-caret-right">
+  <el-breadcrumb class="breadcrumb" separator="》" >
     <transition-group name="breadcrumb" mode="out-in">
       <el-breadcrumb-item v-for="(item,index)  in levelList" :key="item.path">
         <span v-if='item.redirect==="home"||index==levelList.length-1'>{{item.meta.title}}</span>

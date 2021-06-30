@@ -6,19 +6,21 @@
     <ul>
       <li class="tags-li" v-for="(item,index) in tagList" :class="{'active': isActive(item.path)}" :key="index">
         <router-link :to="item.path" class="tags-li-title">{{item.title}}</router-link>
-        <span @click="closeTags(index)" v-if="item.title !== '欢迎页'">
-          <svg-icon icon-class='close' className="close-icon" />
+        <span @click="closeTags(index)" class="icon-box" v-if="item.title !== '欢迎页'">
+          <svg-icon icon-class='closeCircle' className="close-icon" />
+          <!-- <svg-icon icon-class='close' className="close-icon" /> -->
         </span>
       </li>
     </ul>
     <div class="tags-close-box">
       <el-dropdown @command="handleTags" size="small">
-        <el-button size="mini" type="primary">
+        <el-button size="mini" type="primary" >
           标签选项
-          <i class="el-icon-arrow-down el-icon--right"></i>
+          <svg-icon icon-class='dropDown' className="dropDown-icon" />
+          <!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
         </el-button>
         <template #dropdown>
-          <el-dropdown-menu >
+          <el-dropdown-menu>
             <el-dropdown-item command="handleOther">关闭其他</el-dropdown-item>
             <el-dropdown-item command="handleAll">关闭所有</el-dropdown-item>
           </el-dropdown-menu>
@@ -32,7 +34,7 @@
   import {
     computed,
     defineComponent,
-    watchEffect
+    watchEffect,
   } from 'vue'
   import {
     Store,
@@ -53,7 +55,7 @@
       const tagList = computed(() => store.getters.tagList)
       const showTags = computed(() => tagList.value.length)
       const isActive = (path: string) => {
-        return path = route.fullPath
+        return path === route.fullPath
       }
       const closeTags = async (i: number) => {
         const curtag = tagList.value[i]
@@ -76,8 +78,6 @@
         }
       }
       const setTag = async (route: any) => {
-        console.log(route,"route");
-        
         const isExist = tagList.value.some((item: any) => {
           return item.path === route.fullPath;
         });
@@ -107,7 +107,7 @@
   })
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   .tags {
     position: relative;
     height: 30px;
@@ -167,11 +167,13 @@
   .tags-li.active .tags-li-title {
     color: #fff;
   }
-  .close-icon {
+
+  .icon-box .close-icon {
     vertical-align: text-top;
-    width: 20px;
-    height: 20px;
+    width: 1.2em;
+    height: 1.2em;
   }
+
   .tags-close-box {
     position: absolute;
     right: 0;

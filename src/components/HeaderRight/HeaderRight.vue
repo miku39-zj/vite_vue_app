@@ -19,7 +19,9 @@
       <span class="right-navi-inner">
         <el-dropdown class="dropMore" trigger="click" @command="handleCommand">
           <span class="el-dropdown-link">
-            admin<i class="el-icon-arrow-down el-icon--right"></i>
+            admin
+            <svg-icon icon-class='dropDown' className="dropDown-icon" />
+            <!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
           </span>
           <template #dropdown>
             <el-dropdown-menu>
@@ -157,5 +159,9 @@
     line-height: 3.5em;
     font-size: 15px;
     color: #000000;
+  }
+
+  .dropDown-icon {
+    vertical-align: middle;
   }
 </style>
