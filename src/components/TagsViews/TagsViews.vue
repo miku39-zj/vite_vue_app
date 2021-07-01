@@ -14,7 +14,7 @@
     </ul>
     <div class="tags-close-box">
       <el-dropdown @command="handleTags" size="small">
-        <el-button size="mini" type="primary" >
+        <el-button size="mini" type="primary">
           标签选项
           <svg-icon icon-class='dropDown' className="dropDown-icon" />
           <!-- <i class="el-icon-arrow-down el-icon--right"></i> -->
@@ -59,12 +59,14 @@
       }
       const closeTags = async (i: number) => {
         const curtag = tagList.value[i]
-        store.commit("DEL_TAGLIST", {
-          index: i
-        })
         if (curtag.path === route.fullPath) {
           router.push(tagList.value[i - 1].path)
         }
+        setTimeout(() => {
+          store.commit("DEL_TAGLIST", {
+            index: i
+          })
+        })
       }
       const handleTags = async (val: any) => {
         if (val === "handleOther") {

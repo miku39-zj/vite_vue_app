@@ -1,7 +1,6 @@
 /*
  * @Description: 
  */
-
 import faker from "faker"
 
 
@@ -11,7 +10,7 @@ export interface IData {
 }
 
 export const data: Array<IData> = new Array<IData>()
-for (let i = 1; i <= 10000; i++) {
+for (let i = 1; i <= 100000; i++) {
   data.push({
     id: i,
     value: faker.name.findName()
