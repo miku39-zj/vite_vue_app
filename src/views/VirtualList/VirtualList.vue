@@ -1,13 +1,12 @@
 <!--
  * @Description: 
 -->
-
-
 <script lang="ts">
   import {
     defineComponent,
     computed,
     ref,
+    Ref,
     onMounted,
     nextTick,
     onBeforeUpdate,
@@ -49,24 +48,30 @@
       //   </div>
       // </template>
       //#endregion
-      const vList: any = ref(null)
-      const items: any = ref < any > ([])
+
+      let vList: any = ref(null)
+      let items: any = ref < any > ([])
+
+      let itemHight: Ref < number > = ref < number > (0)
       // 可视高度
-      const screenHeight = ref(0)
+      let screenHeight: Ref < number > = ref < number > (0)
       // 偏移量
-      const startOffset = ref(0)
-      const start = ref(0)
-      const end = ref(0)
+      let startOffset: Ref < number > = ref < number > (0)
+      let start: Ref < number > = ref < number > (0)
+      let end: Ref < number > = ref < number > (0)
+      
       //列表高度
-      const listHeight = computed(() => props.listData.length * props.itemSize)
+      const listHeight = computed(() => props.listData.length * itemHight.value)
+      
       //可显示列表数
-      const visibleCount = computed(() => Math.ceil(screenHeight.value / props.itemSize))
+      const visibleCount = computed(() => Math.ceil(screenHeight.value / itemHight.value))
       //偏移
       const getTransform = computed(() => `translate(0,${startOffset.value}px)`)
       //显示数据
       const visibleData = computed(() => props.listData.slice(start.value, Math.min(end.value, props.listData
         .length)))
-
+      //真实高度
+      const virtualHight = computed(() => itemHight.value * props.showData)
       //method
       const scrollEvent = async (e: Event) => {
         //当前滚动位置
@@ -86,9 +91,10 @@
       onMounted(() => {
         screenHeight.value = vList.value.clientHeight
         start.value = 0
-        end.value = start.value + visibleCount.value
+        end.value = props.showData
+        // end.value = start.value + visibleCount.value
         nextTick(() => {
-          console.log(items, "itemsitems132");
+          itemHight.value = items.value[0].clientHeight
         })
       })
       const getSlotsRender = (h: any, slot: any): Array < typeof h > => {
@@ -96,9 +102,12 @@
         visibleData.value.map((item: any, i: number) => {
           slotsNode.push(h('div', {
             key: item.id,
-            class:'virtual-item',
+            class: 'virtual-item',
             ref: setIemref,
-            style: { height: props.itemSize + 'px',lineHeight: props.itemSize + 'px' }
+            style: {
+              height: props.itemSize + 'px',
+              lineHeight: props.itemSize + 'px'
+            }
           }, slot.content({
             name: 'content',
             item: item,
@@ -116,7 +125,8 @@
         visibleData,
         scrollEvent,
         setIemref,
-        getSlotsRender
+        getSlotsRender,
+        virtualHight,
       }
     },
     render() {
@@ -125,6 +135,7 @@
         listHeight,
         getTransform,
         getSlotsRender,
+        virtualHight,
         $slots
       } = this
       return h('div', {
@@ -141,7 +152,8 @@
         h('div', {
           class: 'virtual-list',
           style: {
-            'transform': getTransform
+            transform: getTransform,
+            height: virtualHight
           }
         }, getSlotsRender(h, $slots))
       ])

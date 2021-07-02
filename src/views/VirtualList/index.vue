@@ -1,15 +1,7 @@
 <!--
  * @Description: 
 -->
-<template>
-  <div class="box">
-    <VirtualList :listData="FakerData" :showData="20">
-      <template #content="scoped">
-        <div :ref="el => { if (el) divs[scoped.i] = el }">{{scoped.item.value}}</div>
-      </template>
-    </VirtualList>
-  </div>
-</template>
+
 
 <script lang="ts">
   import {
@@ -19,7 +11,9 @@
     Ref,
     ref,
     onBeforeUpdate,
-    nextTick
+    nextTick,
+    h,
+    resolveComponent
   } from 'vue'
   import VirtualList from "./VirtualList.vue";
   import {
@@ -46,15 +40,26 @@
       })
       return {
         FakerData,
-        divs
+        divs,
       }
     },
-    // render() {
-    //   const {
-    //     FakerData
-    //   } = this
-
-    // },
+    render() {
+      const {
+        FakerData,
+        divs,
+      } = this
+      const VirtualList: any = resolveComponent('VirtualList')
+      return h('div', {
+        class: 'box'
+      }, [h(VirtualList, {
+        listData: FakerData,
+        showData: 30
+      }, {
+        content: (props: any) => h('div',{
+          ref: el => { if (el) divs[props.i] = el }
+        }, props.item.value)
+      })])
+    },
   })
 </script>
 
