@@ -1,30 +1,21 @@
 <!--
  * @Description: 
 -->
-<template>
-  <div ref="vList" class="virtual-list-contain" @scroll="scrollEvent($event)">
-    <div class="virtual-list-model" :style="{ height: listHeight + 'px' }"></div>
-    <div class="virtual-list" :style="{'transform': getTransform}">
-      <div class="virtual-item" v-for="(item,i) in visibleData" :key="item.id" :ref="setIemref"
-        :style="{ height: itemSize + 'px',lineHeight: itemSize + 'px' }">
-        <slot name="content" :item="item" :i="i"></slot>
-      </div>
-    </div>
-    <div style="width: 100%;height: 0px"></div>
-  </div>
-</template>
+
 
 <script lang="ts">
   import {
     defineComponent,
     computed,
     ref,
-    Ref,
     onMounted,
     nextTick,
     onBeforeUpdate,
+    h
   } from 'vue'
-
+  import {
+    IData
+  } from "./FakerData"
   export default defineComponent({
     name: 'VirtualList',
     props: {
@@ -35,11 +26,31 @@
       itemSize: {
         type: Number,
         default: 30
+      },
+      showData: {
+        type: Number,
+        default: 20
       }
     },
-    setup(props, content) {
+    setup(props, {
+      slots
+    }) {
+      //#region 
+      //       <template>
+      //   <div ref="vList" class="virtual-list-contain" @scroll="scrollEvent($event)">
+      //     <div class="virtual-list-model" :style="{ height: listHeight + 'px' }"></div>
+      //     <div class="virtual-list" :style="{'transform': getTransform}">
+      //       <div class="virtual-item" v-for="(item,i) in visibleData" :key="item.id" :ref="setIemref"
+      //         :style="{ height: itemSize + 'px',lineHeight: itemSize + 'px' }">
+      //         <slot name="content" :item="item" :i="i"></slot>
+      //       </div>
+      //     </div>
+      //     <div style="width: 100%;height: 0px"></div>
+      //   </div>
+      // </template>
+      //#endregion
       const vList: any = ref(null)
-      const items: any = ref<any>([])
+      const items: any = ref < any > ([])
       // 可视高度
       const screenHeight = ref(0)
       // 偏移量
@@ -62,7 +73,7 @@
         let scrollTop = vList.value.scrollTop;
         start.value = Math.floor(scrollTop / props.itemSize);
         end.value = start.value + visibleCount.value;
-        
+
         startOffset.value = scrollTop - (scrollTop % props.itemSize);
       }
       const setIemref = (el: Element) => {
@@ -77,9 +88,25 @@
         start.value = 0
         end.value = start.value + visibleCount.value
         nextTick(() => {
-          console.log(items,"itemsitems132");
+          console.log(items, "itemsitems132");
         })
       })
+      const getSlotsRender = (h: any, slot: any): Array < typeof h > => {
+        const slotsNode: Array < typeof h > = []
+        visibleData.value.map((item: any, i: number) => {
+          slotsNode.push(h('div', {
+            key: item.id,
+            class:'virtual-item',
+            ref: setIemref,
+            style: { height: props.itemSize + 'px',lineHeight: props.itemSize + 'px' }
+          }, slot.content({
+            name: 'content',
+            item: item,
+            i: i
+          })))
+        })
+        return slotsNode
+      }
       return {
         vList,
         items,
@@ -88,8 +115,36 @@
         getTransform,
         visibleData,
         scrollEvent,
-        setIemref
+        setIemref,
+        getSlotsRender
       }
+    },
+    render() {
+      const {
+        scrollEvent,
+        listHeight,
+        getTransform,
+        getSlotsRender,
+        $slots
+      } = this
+      return h('div', {
+        ref: 'vList',
+        onScroll: scrollEvent,
+        class: 'virtual-list-contain',
+      }, [
+        h('div', {
+          class: 'virtual-list-model',
+          style: {
+            height: listHeight + 'px'
+          },
+        }),
+        h('div', {
+          class: 'virtual-list',
+          style: {
+            'transform': getTransform
+          }
+        }, getSlotsRender(h, $slots))
+      ])
     }
   })
 </script>
@@ -101,6 +156,7 @@
     width: 50%;
     overflow: auto;
     position: relative;
+    cursor: pointer;
   }
 
   .virtual-list-model {

@@ -3,7 +3,7 @@
 -->
 <template>
   <div class="box">
-    <VirtualList :listData="FakerData">
+    <VirtualList :listData="FakerData" :showData="20">
       <template #content="scoped">
         <div :ref="el => { if (el) divs[scoped.i] = el }">{{scoped.item.value}}</div>
       </template>
@@ -48,7 +48,13 @@
         FakerData,
         divs
       }
-    }
+    },
+    // render() {
+    //   const {
+    //     FakerData
+    //   } = this
+
+    // },
   })
 </script>
 

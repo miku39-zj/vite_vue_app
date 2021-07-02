@@ -168,9 +168,8 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
+    transition: transform .2s ease-in-out;
 
-    transition: transform .2s ;
-    
     .icon-box {
       font-size: 30px;
       width: 80px;

@@ -17,7 +17,7 @@
     reactive
   } from 'vue'
   import Lottie from './index.vue';
-  import * as animationData from '../../assets/lottie/65696-tick-animation-success-feedback.json';
+  import * as animationData from '../../assets/lottie/66238-car-rent.json';
   export default defineComponent({
     components: {
       'lottie': Lottie
