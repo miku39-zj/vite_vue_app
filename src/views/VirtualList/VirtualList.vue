@@ -57,6 +57,7 @@
       let screenHeight: Ref < number > = ref < number > (0)
       // 偏移量
       let startOffset: Ref < number > = ref < number > (0)
+
       let start: Ref < number > = ref < number > (0)
       let end: Ref < number > = ref < number > (0)
       
@@ -64,7 +65,7 @@
       const listHeight = computed(() => props.listData.length * itemHight.value)
       
       //可显示列表数
-      const visibleCount = computed(() => Math.ceil(screenHeight.value / itemHight.value))
+      // const visibleCount = computed(() => Math.ceil(screenHeight.value / itemHight.value))
       //偏移
       const getTransform = computed(() => `translate(0,${startOffset.value}px)`)
       //显示数据
@@ -76,10 +77,12 @@
       const scrollEvent = async (e: Event) => {
         //当前滚动位置
         let scrollTop = vList.value.scrollTop;
-        start.value = Math.floor(scrollTop / props.itemSize);
-        end.value = start.value + visibleCount.value;
+        console.log(scrollTop,"scrollTop");
+        
+        start.value = Math.floor(scrollTop / itemHight.value);
+        end.value = start.value + props.showData;
 
-        startOffset.value = scrollTop - (scrollTop % props.itemSize);
+        startOffset.value = scrollTop - (scrollTop % itemHight.value);
       }
       const setIemref = (el: Element) => {
         items.value.push(el)
@@ -120,7 +123,6 @@
         vList,
         items,
         listHeight,
-        visibleCount,
         getTransform,
         visibleData,
         scrollEvent,

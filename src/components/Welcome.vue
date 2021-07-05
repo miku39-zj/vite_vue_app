@@ -82,7 +82,6 @@
 
   .container-one {
     width: 100%;
-    height: 100%;
   }
 
 
@@ -91,7 +90,7 @@
     float: left;
     padding: 20px;
     width: 33%;
-    height: 25%;
+    height: 100%;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, .1);
     border-radius: 5px;
@@ -149,25 +148,25 @@
     margin-left: 15px;
     float: left;
     width: calc(67% - 15px);
-    height: 25%;
+    height: 100%;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, .1);
     border-radius: 5px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-around;
-    padding: 40px 20px;
+    padding: 20px 20px;
   }
 
   .tip-item {
     width: calc(25% - 20px);
-    height: 100%;
+    height: 10rem;
     border: 1px solid rgba(0, 0, 0, .1);
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 0 20px;
     transition: transform .2s ease-in-out;
 
     .icon-box {
