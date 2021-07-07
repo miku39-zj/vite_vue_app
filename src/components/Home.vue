@@ -144,7 +144,7 @@
   }
 
   .home-sider {
-    background-image: linear-gradient(#B2FCFF, #B2FCFF);
+    background-image: linear-gradient(#001529, #001529);
     height: 100%;
     transition: width .3s;
 
