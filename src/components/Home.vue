@@ -158,7 +158,7 @@
       width: 100%;
       height: 50px;
       border-bottom: 1px solid #dcdfe6;
-      color: #000;
+      color: #3E64FF;
       box-sizing: border-box;
       text-align: left;
       line-height: 50px;

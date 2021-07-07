@@ -122,8 +122,12 @@
             <ul class="dynamic-timeline">
               <li class="dynamic-timeline-item">
                 <div class="timeline-item-line"></div>
-                <div class="timeline-item-icon"></div>
-                <div class="timeline-item-content"></div>
+                <div class="timeline-item-icon">
+                  <svg-icon icon-class='diamond' className="diamond-icon" /> 
+                </div>
+                <div class="timeline-item-content">
+                  <div class="timeline-item-content-title">2020-10-01</div>
+                </div>
               </li>
             </ul>
           </el-scrollbar>
@@ -144,8 +148,8 @@
   export default defineComponent({
     setup() {
       const initChart = () => {
-        const dom: any = document.getElementById('chart-contain')
-        const myChart = echarts.init(dom);
+        const dom: HTMLElement | null = document.getElementById('chart-contain')
+        const myChart = echarts.init(dom as HTMLElement);
         const option = {
           title: {
             // text: "年度追番",
@@ -481,6 +485,8 @@
   .dynamic-timeline {
     list-style: none;
     padding: 0;
+    font-size: 16px;
+    margin: 0;
   }
 
   .dynamic-timeline-item {
@@ -490,8 +496,28 @@
 
   .timeline-item-line {
     position: absolute;
-    left: 4px;
+    left: 11px;
     height: 100%;
-    border-left: 2px solid #e4e7ed;
+    border-right: 2px dashed rgba(230, 165, 26, 0.5);
+  }
+
+  .timeline-item-icon {
+    position: absolute;
+    border-radius: 50%;
+    top: -1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .diamond-icon {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  .timeline-item-content {
+    position: relative;
+    padding-left: 34px;
+    top:3px
   }
 </style>
