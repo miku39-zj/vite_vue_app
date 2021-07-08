@@ -15,7 +15,7 @@ export const dynamicRoutes: Array<IRouterList> = [{
   name: 'home',
   meta: {
     title: "首页",
-    icon: 'home'
+    icon: 'el-icon-s-home'
   },
   children: [{
     path: '/welcome',
@@ -23,7 +23,7 @@ export const dynamicRoutes: Array<IRouterList> = [{
     name: 'welcome',
     meta: {
       title: "欢迎页",
-      icon: 'home',
+      icon: 'el-icon-s-home',
     }
   }]
 },
@@ -33,7 +33,7 @@ export const dynamicRoutes: Array<IRouterList> = [{
   name: 'component',
   meta: {
     title: "组件",
-    icon: 'component'
+    icon: 'el-icon-coin'
   },
   children: [{
     path: '/lottie',
@@ -41,7 +41,7 @@ export const dynamicRoutes: Array<IRouterList> = [{
     name: 'lottie',
     meta: {
       title: "动画",
-      icon: 'mooncloud',
+      icon: 'el-icon-headset',
     }
   },
   {
@@ -50,7 +50,7 @@ export const dynamicRoutes: Array<IRouterList> = [{
     name: 'VirtualList',
     meta: {
       title: "虚拟列表",
-      icon: 'rain',
+      icon: 'el-icon-place',
     }
   }]
 },

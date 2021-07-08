@@ -114,11 +114,14 @@
     height: 540px;
     border: 1px solid rgba(0, 0, 0, .2);
     background: hsla(0, 0%, 100%, .8);
-    border-radius: 50px;
     position: absolute;
-    left: 50%;
+    right: 0;
     top: 50%;
     transform: translate(-50%, -50%);
+    transition: transform .1s;
+    &:hover {
+      box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+    }
 
     .login-box-title {
       line-height: 50px;

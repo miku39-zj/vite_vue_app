@@ -11,21 +11,31 @@
       <svg-icon icon-class='suntag' className="suntag-icon" />
       <svg-icon icon-class='moontag' className="moontag-icon" />
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" class="wave" viewBox="0 0 1440 320">
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" class="wave" viewBox="0 0 1440 320">
       <path fill="#0099ff" fill-opacity="1"
         d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
       </path>
-    </svg>
-    <div class="user">
-      <div class="Icon">
-        <svg-icon icon-class='userfill' className="user-icon" />
+    </svg> -->
+
+    <div class="login-form-box">
+      <div class="login-form-left">
+        <div class="user">
+          <div class="Icon">
+            <svg-icon icon-class='userfill' className="user-icon" />
+          </div>
+          <div class="head">account login</div>
+        </div>
+        <div class="login-icon-box">
+          <svg-icon icon-class='login' className="login-icon" />
+        </div>
       </div>
-      <div class="head">account login</div>
+      <div class="login-form-right">
+        <transition name="move" mode="out-in">
+          <SignIn ref="SignIn" v-if="isSignIn" @showSignUp="showSignUp"></SignIn>
+          <SignUp ref="SignUp" v-else @showSignUp="showSignUp"></SignUp>
+        </transition>
+      </div>
     </div>
-    <transition name="move" mode="out-in">
-      <SignIn ref="SignIn" v-if="isSignIn" @showSignUp="showSignUp"></SignIn>
-      <SignUp ref="SignUp" v-else @showSignUp="showSignUp"></SignUp>
-    </transition>
   </div>
 </template>
 
@@ -69,6 +79,7 @@
     background-image: url('../assets/img/19.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+
     .wave {
       position: absolute;
       bottom: 0;
@@ -135,7 +146,8 @@
     position: absolute;
     top: 20rem;
     left: 8rem;
-    z-index: -1;
+    left: 20px;
+    top: 20px;
 
     .Icon {
       text-align: center;
@@ -153,6 +165,37 @@
       text-transform: uppercase;
       user-select: none;
       text-shadow: 1px 1px 1px rgba(16, 16, 16, 0.1), 1px 2px 1px rgba(16, 16, 16, 0.1), 1px 3px 1px rgba(16, 16, 16, 0.1), 1px 4px 1px rgba(16, 16, 16, 0.1), 1px 5px 1px rgba(16, 16, 16, 0.1), 1px 6px 1px rgba(16, 16, 16, 0.1), 1px 7px 1px rgba(16, 16, 16, 0.1), 1px 8px 1px rgba(16, 16, 16, 0.1);
+    }
+  }
+
+  .login-form-box {
+    position: absolute;
+    left: 10%;
+    top: 15%;
+    width: 80%;
+    height: 70%;
+    align-items: center;
+    display: flex;
+    background: rgba(28, 40, 201, 0.8);
+    .login-form-left {
+      width: 60%;
+      height: 100%;
+      border-right: solid 2px skyblue;
+    }
+    .login-form-right {
+      width: 40%;
+      height: 100%;
+    }
+    .login-icon-box {
+      width: 50%;
+      height: 90%;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .login-icon {
+      width: 100%;
+      height: 100%;
     }
   }
 

@@ -120,18 +120,33 @@
           </template>
           <el-scrollbar>
             <ul class="dynamic-timeline">
-              <li class="dynamic-timeline-item">
+              <li class="dynamic-timeline-item" v-for="item in dymicData" :key="item.icon">
                 <div class="timeline-item-line"></div>
                 <div class="timeline-item-icon">
-                  <svg-icon icon-class='diamond' className="diamond-icon" /> 
+                  <svg-icon icon-class='diamond' className="diamond-icon" />
                 </div>
                 <div class="timeline-item-content">
-                  <div class="timeline-item-content-title">2020-10-01</div>
+                  <div class="timeline-item-date">{{item.date}}</div>
+                  <div class="timeline-item-data">
+                    <el-card shadow="never">
+                      <div class="item-data-box">
+                        <div class="item-data-box-avator">
+                          <svg-icon :icon-class='item.icon' className="myIcon" />
+                        </div>
+                        <div class="item-data-box-content">
+                          {{item.value}}
+                        </div>
+                      </div>
+                    </el-card>
+                  </div>
                 </div>
               </li>
             </ul>
           </el-scrollbar>
         </el-card>
+      </div>
+      <div class="">
+
       </div>
     </div>
   </div>
@@ -143,8 +158,14 @@
     defineComponent,
     ref,
     onMounted,
-    nextTick
+    nextTick,
+    reactive
   } from 'vue'
+  type IdymicData = {
+    date: string,
+    icon: string,
+    value: string,
+  }
   export default defineComponent({
     setup() {
       const initChart = () => {
@@ -240,10 +261,27 @@
           notMerge: true
         })
       }
+      const dymicData: Array < IdymicData > = reactive < Array < IdymicData >> ([{
+          date: "2021-03-09",
+          icon: "avatar",
+          value: "平泽唯追了新番轻音少女"
+        },
+        {
+          date: "2021-02-12",
+          icon: "avatar1",
+          value: "路飞追了新番转生蜘蛛又怎样"
+        },
+        {
+          date: "2020-10-01",
+          icon: "avatar4",
+          value: "蜘蛛子追了新番overlord"
+        },
+      ])
       onMounted(() => initChart())
 
       return {
-        initChart
+        initChart,
+        dymicData,
       }
     }
   })
@@ -433,6 +471,10 @@
     text-align: center;
     padding: 20px 0;
 
+    &:hover {
+      transform: scale(1.1);
+    }
+
     .nav-item {
       cursor: pointer;
       display: inline-block;
@@ -496,7 +538,7 @@
 
   .timeline-item-line {
     position: absolute;
-    left: 11px;
+    left: 10px;
     height: 100%;
     border-right: 2px dashed rgba(230, 165, 26, 0.5);
   }
@@ -510,14 +552,36 @@
     align-items: center;
 
     .diamond-icon {
-      width: 25px;
-      height: 25px;
+      width: 22px;
+      height: 22px;
     }
   }
 
   .timeline-item-content {
     position: relative;
     padding-left: 34px;
-    top:3px
+    top: 3px
+  }
+
+  .timeline-item-date {
+    margin-bottom: 8px;
+    padding-top: 4px;
+  }
+
+  .timeline-item-data {
+    .item-data-box {
+      display: flex;
+      align-items: center;
+    }
+
+    .item-data-box-avator .myIcon {
+      width: 2em;
+      height: 2em;
+      vertical-align: middle;
+    }
+
+    .item-data-box-content {
+      margin-left: 8px;
+    }
   }
 </style>

@@ -12,7 +12,7 @@
             <span>vue3+vite</span>
           </div>
           <div class="siderMain">
-            <el-menu class="siderMenu" background-color="rgb(121, 162, 165)" text-color="#ffffff" active-text-color="#ffffff"
+            <el-menu class="siderMenu" background-color="rgba(150, 235, 238,.1)" text-color="#ffffff" active-text-color="#ffffff"
               unique-opened :collapse="isCollapse" :collapse-transition="false" router :default-active="activeMenu"
               mode="vertical">
               <MenuItem v-for="route in common_routes" :key="route.name" :item="route" :base-path="route.path">
@@ -144,7 +144,7 @@
   }
 
   .home-sider {
-    background-image: linear-gradient(#001529, #001529);
+    background-image: linear-gradient(#191d20, #191d20);
     height: 100%;
     transition: width .3s;
 

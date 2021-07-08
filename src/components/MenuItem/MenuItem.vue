@@ -1,13 +1,17 @@
 <!--
  * @Description: 
 -->
+<!--
+ * @Description: 
+-->
 <template>
   <div v-if="!item.hidden">
     <template v-if="checkOneChild(item.children,item)">
       <router-link v-if="onlyOneChild.meta && !onlyOneChild.meta.hidden" :to="onlyOneChild.path">
         <el-menu-item :index="onlyOneChild.name" :class="{'submenu-title-noDropdown' : isNest,'menu-box': true }">
-          <svg-icon :icon-class="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" className="icon"
-            style="color: #ffffff" />
+          <!-- <svg-icon :icon-class="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" className="icon"
+            style="color: #515151" /> -->
+            <i :class="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" style="color: #ffffff" />
           <template #title>
             <span>{{onlyOneChild.meta.title}}</span>
           </template>
@@ -16,7 +20,8 @@
     </template>
     <el-submenu v-else ref="subMenu" class="menu-box" :index="item.name" popper-append-to-body>
       <template #title>
-        <svg-icon :icon-class="item.meta && item.meta.icon" className="icon" style="color: #ffffff" />
+        <i v-if="item.meta" :class="item.meta && item.meta.icon" style="color: #ffffff" />
+        <!-- <svg-icon :icon-class="item.meta && item.meta.icon" className="icon" style="color: #515151" /> -->
         <span v-if="item.meta">{{item.meta.title}}</span>
         <!-- <svg-icon icon-class='dropDown' className="dropDown-icon" /> -->
       </template>
