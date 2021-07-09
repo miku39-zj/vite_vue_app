@@ -3,7 +3,13 @@
 -->
 <template>
   <div class="login_container"
-    :style="showMoon ? {['background-color']:'rgba(1, 4, 10, 0.8)'} : {['background-color']:'hsla(0, 0%, 100%, 0.5)'}">
+    :style="showMoon ? {['background-color']:'rgba(1, 4, 10, 0.8)'} : {['background-color']:'#ECFCFF'}">
+    <div class="user">
+      <div class="Icon">
+        <svg-icon icon-class='userfill' className="user-icon" />
+      </div>
+      <div class="head">account login</div>
+    </div>
     <div class="rightTop">
       <svg-icon :icon-class="showMoon ? 'moontag' : 'suntag'" className="moon-icon" />
     </div>
@@ -17,16 +23,12 @@
       </path>
     </svg> -->
 
-    <div class="login-form-box">
+    <div class="login-form-box"
+      :style="showMoon ? {['background-color']:'rgba(32, 29, 53, 0.5)'} : {['background-color']:'hsla(0, 0%, 100%, 0.5)'}">
       <div class="login-form-left">
-        <div class="user">
-          <div class="Icon">
-            <svg-icon icon-class='userfill' className="user-icon" />
-          </div>
-          <div class="head">account login</div>
-        </div>
+
         <div class="login-icon-box">
-          <svg-icon icon-class='login' className="login-icon" />
+          <svg-icon icon-class='WebLogin' className="login-icon" />
         </div>
       </div>
       <div class="login-form-right">
@@ -76,9 +78,9 @@
     width: 100%;
     height: 100%;
 
-    background-image: url('../assets/img/19.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    // background-image: url('../assets/img/19.jpg');
+    // background-size: cover;
+    // background-repeat: no-repeat;
 
     .wave {
       position: absolute;
@@ -92,8 +94,8 @@
     content: "";
     position: absolute;
     left: 0;
-    width: 50%;
-    height: 50%;
+    width: 30%;
+    height: 40%;
     z-index: -1;
     background-color: #0099ff;
     clip-path: ellipse(46% 60% at 0% 0%);
@@ -144,10 +146,8 @@
 
   .user {
     position: absolute;
-    top: 20rem;
-    left: 8rem;
-    left: 20px;
-    top: 20px;
+    left: 10px;
+    top: 10px;
 
     .Icon {
       text-align: center;
@@ -176,22 +176,28 @@
     height: 70%;
     align-items: center;
     display: flex;
-    background: rgba(28, 40, 201, 0.8);
+    background: rgba(77, 118, 252, 0.8);
+
     .login-form-left {
       width: 60%;
       height: 100%;
-      border-right: solid 2px skyblue;
+      border-right: solid 2px rgba(35, 38, 209,0.5);
     }
+
+    .login-icon-box {
+      width: 100%;
+      height: 100%;
+    }
+
     .login-form-right {
       width: 40%;
       height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .login-icon-box {
-      width: 50%;
-      height: 90%;
-      position: absolute;
-      bottom: 0;
-    }
+
+
 
     .login-icon {
       width: 100%;
@@ -201,13 +207,14 @@
 
   .move-enter,
   .move-leave-to {
-    // transform:skew(180deg);
+    transform: rotateY(180deg);
     opacity: 0;
   }
 
   .move-enter-to,
   .move-leave {
     // transform: scale(1);
+    transform: rotateY(0deg);
     opacity: 1;
   }
 

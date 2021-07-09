@@ -145,8 +145,14 @@
           </el-scrollbar>
         </el-card>
       </div>
-      <div class="">
-
+      <div class="carousel-image">
+        <el-card shadow="hover" class="chart-box">
+          <el-carousel height="300px" class="carousel-image-box">
+            <el-carousel-item v-for="item in 1" :key="item">
+              <el-image src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg" width="100%" hight="100%"></el-image>
+            </el-carousel-item>
+          </el-carousel>
+        </el-card>
       </div>
     </div>
   </div>
@@ -518,9 +524,20 @@
     margin-top: 15px;
     width: 100%;
     position: relative;
+    overflow: auto;
 
     .dynamic-nav {
       width: 30%;
+      float: left;
+    }
+
+    .carousel-image {
+      width: calc(70% - 15px);
+      margin-left: 15px ;
+      float: left;
+    }
+    .carousel-image-box {
+      width: 100%;
     }
   }
 

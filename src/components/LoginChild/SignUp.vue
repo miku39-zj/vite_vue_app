@@ -113,11 +113,11 @@
     width: 400px;
     height: 540px;
     border: 1px solid rgba(0, 0, 0, .2);
-    background: hsla(0, 0%, 100%, .8);
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    background: hsla(0, 0%, 100%, .1);
+    // position: absolute;
+    // right: 0;
+    // top: 50%;
+    // transform: translate(-50%, -50%);
     transition: transform .1s;
     &:hover {
       box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
