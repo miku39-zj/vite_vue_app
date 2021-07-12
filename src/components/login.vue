@@ -17,19 +17,9 @@
       <svg-icon icon-class='suntag' className="suntag-icon" />
       <svg-icon icon-class='moontag' className="moontag-icon" />
     </div>
-    <!-- <svg xmlns="http://www.w3.org/2000/svg" class="wave" viewBox="0 0 1440 320">
-      <path fill="#0099ff" fill-opacity="1"
-        d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-      </path>
-    </svg> -->
-
-    <div class="login-form-box"
-      :style="showMoon ? {['background-color']:'rgba(32, 29, 53, 0.5)'} : {['background-color']:'hsla(0, 0%, 100%, 0.5)'}">
+    <div class="login-form-box">
       <div class="login-form-left">
-
-        <div class="login-icon-box">
-          <svg-icon icon-class='WebLogin' className="login-icon" />
-        </div>
+        <svg-icon icon-class='undraw_happy_2021_h01d' className="login-icon" />
       </div>
       <div class="login-form-right">
         <transition name="move" mode="out-in">
@@ -77,42 +67,24 @@
   .login_container {
     width: 100%;
     height: 100%;
-
-    // background-image: url('../assets/img/19.jpg');
-    // background-size: cover;
-    // background-repeat: no-repeat;
-
-    .wave {
-      position: absolute;
-      bottom: 0;
-      z-index: -1;
-      fill: #0099ff;
-    }
-  }
-
-  .login_container::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 30%;
-    height: 40%;
-    z-index: -1;
-    background-color: #0099ff;
-    clip-path: ellipse(46% 60% at 0% 0%);
+    background-image: url('../assets/img/login.png');
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .rightTop {
-    float: right;
-    margin: 0 30px 0 0;
+    position: absolute;
+    right: 30px;
+    top: 0;
 
     .moon-icon {
-      width: 4em;
-      height: 4em;
+      width: 4rem;
+      height: 4rem;
     }
   }
 
   .toggle {
-    position: relative;
+    position: absolute;
     display: flex;
     height: 26px;
     width: 50px;
@@ -122,8 +94,8 @@
     box-sizing: border-box;
     padding: 0 6px;
     margin: 0 0 0 auto;
-    top: 10px;
-    right: 30px;
+    top: 20px;
+    right: 100px;
     justify-content: space-between;
     align-items: center;
   }
@@ -146,7 +118,7 @@
 
   .user {
     position: absolute;
-    left: 10px;
+    left: 30px;
     top: 10px;
 
     .Icon {
@@ -156,7 +128,7 @@
     }
 
     .user-icon {
-      fill: #0099ff;
+      fill: rgb(0, 191, 166);
       font-size: 5rem;
     }
 
@@ -164,45 +136,49 @@
       font-size: 1.6rem;
       text-transform: uppercase;
       user-select: none;
-      text-shadow: 1px 1px 1px rgba(16, 16, 16, 0.1), 1px 2px 1px rgba(16, 16, 16, 0.1), 1px 3px 1px rgba(16, 16, 16, 0.1), 1px 4px 1px rgba(16, 16, 16, 0.1), 1px 5px 1px rgba(16, 16, 16, 0.1), 1px 6px 1px rgba(16, 16, 16, 0.1), 1px 7px 1px rgba(16, 16, 16, 0.1), 1px 8px 1px rgba(16, 16, 16, 0.1);
+      background-image: -webkit-linear-gradient(left, rgb(47, 224, 210), #1edb6d 10%, #cc00ff 20%, #d3142e 30%, #b8b8eb 40%, #1d7979 50%, #5ca6d1 60%, #CC00CC 70%, #d3142e 80%, #1edb6d 90%, rgb(47, 224, 210) 100%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-size: 200% 100%;
+      animation: masked 4s linear infinite;
+    }
+  }
+
+  @keyframes masked {
+    0% {
+      background-position: 0 0;
+    }
+
+    100% {
+      background-position: -100% 0;
     }
   }
 
   .login-form-box {
-    position: absolute;
-    left: 10%;
-    top: 15%;
-    width: 80%;
-    height: 70%;
-    align-items: center;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10rem;
+    padding: 0 10rem;
+    box-sizing: border-box;
+  }
+
+  .login-form-left {
     display: flex;
-    background: rgba(77, 118, 252, 0.8);
-
-    .login-form-left {
-      width: 60%;
-      height: 100%;
-      border-right: solid 2px rgba(35, 38, 209,0.5);
-    }
-
-    .login-icon-box {
-      width: 100%;
-      height: 100%;
-    }
-
-    .login-form-right {
-      width: 40%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-
+    justify-content: flex-end;
+    align-items: center;
 
     .login-icon {
-      width: 100%;
-      height: 100%;
+      width: 600px;
+      height: 600px;
     }
+  }
+
+  .login-form-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .move-enter,
@@ -221,5 +197,54 @@
   .move-enter-active,
   .move-leave-active {
     transition: all .5s;
+  }
+
+  @media screen and (max-width: 1500px) {
+    .login-form-box {
+      grid-gap: 5rem;
+      padding: 0 5rem;
+    }
+
+    .login-form-box .login-icon {
+      width: 500px;
+      height: 500px;
+    }
+  }
+
+  @media screen and (max-width: 1080px) {
+    .login-form-box {
+      grid-gap: 1rem;
+      padding: 0 1rem;
+    }
+
+    .login-form-box .login-icon {
+      width: 400px;
+      height: 400px;
+    }
+  }
+
+  @media screen and (max-width: 830px) {
+    .login_container {
+      background: #fff;
+    }
+
+    .user {
+      top: 20px;
+      .Icon {
+        display: none;
+      }
+    }
+
+    .login-form-left {
+      display: none;
+
+      .login-icon {
+        display: none;
+      }
+    }
+
+    .login-form-box {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

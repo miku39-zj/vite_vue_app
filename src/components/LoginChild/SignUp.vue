@@ -27,7 +27,8 @@
         </el-input>
       </el-form-item>
       <el-form-item class="btns">
-        <el-button style="width:100%" type="primary" round @click="login" size="medium">立即注册
+        <el-button style="width:100%;background: rgb(0, 191, 166)" round @click="login" size="medium">
+          立即注册
         </el-button>
       </el-form-item>
     </el-form>
@@ -112,13 +113,14 @@
   .login_box {
     width: 400px;
     height: 540px;
-    border: 1px solid rgba(0, 0, 0, .2);
+    border: 1px solid rgba(0, 0, 0, .1);
     background: hsla(0, 0%, 100%, .1);
     // position: absolute;
     // right: 0;
     // top: 50%;
     // transform: translate(-50%, -50%);
     transition: transform .1s;
+
     &:hover {
       box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
     }
@@ -149,7 +151,7 @@
     }
 
     .btn-something span {
-      color: #0066ff;
+      color: rgb(0, 191, 166);
       cursor: pointer;
       font-weight: 500;
     }

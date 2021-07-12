@@ -23,7 +23,7 @@
         </el-input>
       </el-form-item>
       <el-form-item class="btns">
-        <el-button style="width:100%" type="primary" round @click="login" size="medium">立即登录
+        <el-button style="width:100%;background: rgb(0, 191, 166)" round @click="login" size="medium">立即登录
         </el-button>
       </el-form-item>
       <el-row class="remenbBox">
@@ -34,7 +34,7 @@
         </el-col>
         <el-col :span="12">
           <el-form-item :style="{ 'text-align': 'right' }">
-            <el-button type="text" size="small">
+            <el-button type="text" size="small" style="color: rgb(0, 191, 166)">
               忘记密码？
             </el-button>
           </el-form-item>
@@ -153,7 +153,7 @@
   .login_box {
     width: 400px;
     height: 540px;
-    border: 1px solid rgba(0, 0, 0, .2);
+    // border: 1px solid rgba(0, 0, 0, .2);
     background: hsla(0, 0%, 100%, .1);
     // border-radius: 50px;
     // position: absolute;
@@ -169,10 +169,9 @@
   .login-box-title {
     line-height: 50px;
     font-size: 1.4rem;
-    color: #000;
+    color: #999;
     text-align: center;
     font-weight: bold;
-    border-bottom: 1px solid #ffffff;
     user-select: none;
   }
 
@@ -180,6 +179,7 @@
   .myIcon {
     width: 1.8em;
     height: 1.8em;
+    fill: rgb(0, 191, 166);
   }
 
   .iconBox {
@@ -193,7 +193,7 @@
   }
 
   .btn-something span {
-    color: #0066ff;
+    color: rgb(0, 191, 166);
     cursor: pointer;
     font-weight: 500;
   }
