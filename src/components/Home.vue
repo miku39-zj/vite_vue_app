@@ -12,7 +12,7 @@
             <span>vue3+vite</span>
           </div>
           <div class="siderMain">
-            <el-menu class="siderMenu" background-color="rgba(150, 235, 238,.1)" text-color="#ffffff" active-text-color="#ffffff"
+            <el-menu class="siderMenu" background-color="#333744" text-color="#ffffff" active-text-color="#ffffff"
               unique-opened :collapse="isCollapse" :collapse-transition="false" router :default-active="activeMenu"
               mode="vertical">
               <MenuItem v-for="route in common_routes" :key="route.name" :item="route" :base-path="route.path">
@@ -48,7 +48,7 @@
               </transition>
             </router-view>
           </div>
-          
+
         </el-main>
       </el-container>
 
@@ -62,7 +62,9 @@
     reactive,
     ref,
     Ref,
-    computed
+    computed,
+    ComputedRef,
+    watchEffect
   } from 'vue'
   import {
     mapGetters,
@@ -92,7 +94,7 @@
       const defaultOptions: Ref < object > = ref < object > ({
         animationData: animationData
       })
-
+      const bodyWidth: ComputedRef < number > = computed(() => document.body.clientWidth)
       const store: Store < any > = useStore()
       const route: RouteLocationNormalizedLoaded = useRoute();
       const common_routes = computed(() => store.getters.common_routes)
@@ -119,13 +121,22 @@
         toggleActive,
         toggleCollapse,
         activeMenu,
-        common_routes
+        common_routes,
+        bodyWidth
       }
     }
   })
 </script>
 
 <style lang="less" scoped>
+  /deep/.el-menu--collapse .el-submenu__title span {
+    display: none;
+  }
+
+  /deep/.el-menu--collapse .el-submenu__title .el-submenu__icon-arrow {
+    display: none;
+  }
+
   /deep/.router-link-active {
     text-decoration: none !important;
   }
@@ -158,7 +169,7 @@
       width: 100%;
       height: 50px;
       border-bottom: 1px solid #dcdfe6;
-      color: #3E64FF;
+      color: #dcdfe6;
       box-sizing: border-box;
       text-align: left;
       line-height: 50px;

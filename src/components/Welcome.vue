@@ -149,7 +149,8 @@
         <el-card shadow="hover" class="chart-box">
           <el-carousel height="300px" class="carousel-image-box">
             <el-carousel-item v-for="item in 1" :key="item">
-              <el-image src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg" width="100%" hight="100%"></el-image>
+              <el-image src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg" width="100%"
+                hight="100%"></el-image>
             </el-carousel-item>
           </el-carousel>
         </el-card>
@@ -410,7 +411,7 @@
     }
 
     &:hover {
-      transform: scale(1.05, 1.05);
+      box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
     }
   }
 
@@ -533,9 +534,10 @@
 
     .carousel-image {
       width: calc(70% - 15px);
-      margin-left: 15px ;
+      margin-left: 15px;
       float: left;
     }
+
     .carousel-image-box {
       width: 100%;
     }
@@ -599,6 +601,25 @@
 
     .item-data-box-content {
       margin-left: 8px;
+    }
+  }
+
+  @media screen and (max-width: 1460px) {
+    .tip-item {
+      .icon-box {
+        font-size: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 60px;
+        color: #fff;
+
+        .tip-icon {
+          width: 1.5em;
+          width: 1.5em;
+        }
+      }
     }
   }
 </style>

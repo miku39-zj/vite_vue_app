@@ -3,7 +3,7 @@
 -->
 <template>
   <div class="login_container"
-    :style="showMoon ? {['background-color']:'rgba(1, 4, 10, 0.8)'} : {['background-color']:'#ECFCFF'}">
+    :style="showMoon ? {['background-color']:'rgba(1, 4, 10, 0.8)'} : {['background-color']:'#fff'}">
     <div class="user">
       <div class="Icon">
         <svg-icon icon-class='userfill' className="user-icon" />
@@ -229,10 +229,7 @@
     }
 
     .user {
-      top: 20px;
-      .Icon {
-        display: none;
-      }
+      display: none;
     }
 
     .login-form-left {
@@ -245,6 +242,8 @@
 
     .login-form-box {
       grid-template-columns: 1fr;
+      grid-gap: 0;
+      padding: 0;
     }
   }
 </style>

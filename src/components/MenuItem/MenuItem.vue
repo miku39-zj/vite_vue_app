@@ -11,9 +11,11 @@
         <el-menu-item :index="onlyOneChild.name" :class="{'submenu-title-noDropdown' : isNest,'menu-box': true }">
           <!-- <svg-icon :icon-class="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" className="icon"
             style="color: #515151" /> -->
-            <i :class="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" style="color: #ffffff" />
+          <i :class="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" style="color: #ffffff" />
           <template #title>
-            <span>{{onlyOneChild.meta.title}}</span>
+            <span>
+              {{onlyOneChild.meta.title}}
+            </span>
           </template>
         </el-menu-item>
       </router-link>
@@ -89,6 +91,10 @@
 </script>
 
 <style lang="less" scoped>
+  a {
+    text-decoration: none !important;
+  }
+
   .el-menu-item.is-active {
     background: #1A86EE !important;
   }
