@@ -147,6 +147,23 @@
       </div>
       <div class="carousel-image">
         <el-card shadow="hover" class="chart-box">
+          <div class="carousel-image-box" @mouseover="ShowBtn" @mouseout="hideBtn">
+            <div class="carousel-image-containt">
+              <button type="button" class="carousel-image-btn carousel-image-left"
+                :style="showButton ? {'display': 'none'} : ''">
+                <i class="el-icon-arrow-left"></i>
+              </button>
+              <button type="button" class="carousel-image-btn carousel-image-right"
+                :style="showButton ? {'display': 'none'} : ''">
+                <i class="el-icon-arrow-right"></i>
+              </button>
+              <div class="carousel-item-box"></div>
+            </div>
+          </div>
+        </el-card>
+      </div>
+      <div class="carousel-image">
+        <el-card shadow="hover" class="chart-box">
           <el-carousel height="300px" class="carousel-image-box">
             <el-carousel-item v-for="item in 1" :key="item">
               <el-image src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg" width="100%"
@@ -166,7 +183,8 @@
     ref,
     onMounted,
     nextTick,
-    reactive
+    reactive,
+    Ref
   } from 'vue'
   type IdymicData = {
     date: string,
@@ -268,6 +286,13 @@
           notMerge: true
         })
       }
+      let showButton: Ref < boolean > = ref < boolean > (true)
+      const ShowBtn = () => {
+        showButton.value = false
+      }
+      const hideBtn = () => {
+        showButton.value = true
+      }
       const dymicData: Array < IdymicData > = reactive < Array < IdymicData >> ([{
           date: "2021-03-09",
           icon: "avatar",
@@ -289,6 +314,9 @@
       return {
         initChart,
         dymicData,
+        ShowBtn,
+        hideBtn,
+        showButton
       }
     }
   })
@@ -540,6 +568,47 @@
 
     .carousel-image-box {
       width: 100%;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .carousel-image-containt {
+      position: relative;
+      height: 300px;
+    }
+
+    .carousel-image-btn {
+      border: none;
+      border-radius: 50%;
+      background-color: rgba(31, 45, 61, .11);
+      color: #FFF;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: .3s;
+      text-align: center;
+      height: 2rem;
+      width: 2rem;
+      z-index: 10;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(31, 45, 61, .23)
+      }
+    }
+
+    .carousel-image-left {
+      left: 16px;
+    }
+
+    .carousel-image-right {
+      right: 16px;
+    }
+
+    .carousel-item-box {
+      width: 100%;
+      display: inline-block;
+      overflow: hidden;
     }
   }
 
@@ -610,10 +679,7 @@
         font-size: 20px;
         width: 60px;
         height: 60px;
-        border-radius: 50%;
-        text-align: center;
         line-height: 60px;
-        color: #fff;
 
         .tip-icon {
           width: 1.5em;
