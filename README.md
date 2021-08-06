@@ -8,8 +8,11 @@
 ![image](https://user-images.githubusercontent.com/50164803/128450026-bbab7922-dcb8-44f5-9f1c-6c731be4cfe2.png)
 
 ## 项目运行
-`npm install
- npm run dev
+`
+npm install
+`
+`
+npm run dev
 `
 
 后续完善
