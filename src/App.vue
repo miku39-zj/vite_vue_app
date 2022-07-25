@@ -3,11 +3,12 @@
 -->
 <template>
   <div id="app">
+    <div>
+      <router-link to="/about">关于</router-link>
+    </div>
     <!-- 路由占位符 -->
     <router-view></router-view>
   </div>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
 </template>
 
 <script lang="ts">
