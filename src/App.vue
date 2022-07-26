@@ -5,6 +5,7 @@
   <div id="app">
     <div>
       <router-link to="/about">关于</router-link>
+      <router-link to="/rate">rate</router-link>
     </div>
     <!-- 路由占位符 -->
     <router-view></router-view>

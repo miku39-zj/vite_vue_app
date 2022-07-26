@@ -78,6 +78,11 @@ export const staticRoutes: Array<IRouterList> = [
     name: "About",
     component: () => import("../components/About.vue"),
   },
+  {
+    path: "/rate",
+    name: "Rate",
+    component: () => import("../views/Rate.vue"),
+  },
 ];
 
 const router = createRouter({

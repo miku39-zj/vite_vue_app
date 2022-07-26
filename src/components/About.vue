@@ -1,6 +1,5 @@
 <template>
-  <h1>这是首页</h1>
-  <TodoList />
+  <TodoList></TodoList>
 </template>
 
 <script setup lang="ts">
